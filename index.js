@@ -11,6 +11,11 @@ const studentsRouter = require('./routers/students.router');
 app.use('/students', studentsRouter);
 // Siempre que me refiera a los alumnos le coloco el prefijo
 
+// En la constante courseRouter ponemos todo lo del módulo router
+const courseRouter = require('./routers/courses.router');
+app.use('/courses', courseRouter);
+// Siempre que me refiera a los alumnos le coloco el prefijo
+
 app.get("/",(req, res) => {
     res.send("Hi digital agenda");
 });

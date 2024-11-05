@@ -1,25 +1,32 @@
-// CONFIGURACIÓN DEL SERVIDOR (con las mínimas prestaciones para ejecutar express)
+//*********************************************************************************************
+//                              CONFIGURACIÓN DEL SERVIDOR
+//*********************************************************************************************
 
-const express = require("express"); //¿Para qué usamos express?
+// VARIABLES DE ENTORNO
+require("dotenv").config();
+
+const express = require("express");
 const app = express();
 
-// En el cuerpo de la petición transformamos el json en ub objeto js
+// En el cuerpo de la petición transformamos el json en un objeto js
 app.use(express.json()); 
 
-// En la constante studentsRouter ponemos todo lo del módulo router
 const studentsRouter = require('./routers/students.router');
+//Siempre que se refiera a los alumnos se colocará el prefijo /students
 app.use('/students', studentsRouter);
-// Siempre que me refiera a los alumnos le coloco el prefijo
 
-// En la constante courseRouter ponemos todo lo del módulo router
 const courseRouter = require('./routers/courses.router');
+//Siempre que se refiera a los alumnos se colocará el prefijo /courses
 app.use('/courses', courseRouter);
-// Siempre que me refiera a los alumnos le coloco el prefijo
+
+// Se agrega la ruta para realizar la autenticación
+app.use("/auth", require("./routers/auth.router"));
 
 app.get("/",(req, res) => {
     res.send("Hi digital agenda");
 });
 
-//Ruta principal del proyecto
-const PORT = 3000;
+// RUTA PRINCIPAL DEL PROYECTO
+// En PORT usara lo definido en el servidor o en su defecto el puerto 3001.
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));

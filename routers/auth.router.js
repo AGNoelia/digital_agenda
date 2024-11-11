@@ -8,22 +8,22 @@ const router = express.Router();
 const controller = require("../controllers/auth.controller");
 const authMiddleware = require ("../middleware/auth.middleware")
 
-// Método POST: Para registro
+// Método GET: Para saber si el usuario está logeado correctamente (protección)
+router.get("/protected", authMiddleware, (req, res) => {
+    res.status(200).send(`Hi user ${req.userName}`);
+});
+
+// Método POST: Para registro de nuevo usuario
 router.post('/register', controller.register);
 
 // Método POST: Para login
 router.post('/login', controller.login);
 
-// Método PUT: Para modificar xxxx
-//router.put('/:id_course', controller.updateCourse);
+// Método PUT: Para modificar usuario ya cargado
+router.put('/:id_user', controller.updateUser);
 
-// Método DELETE: Para eliminar xxxx
-//router.delete('/:id_course', controller.deleteCourse);
-
-// Método GET: Para saber si el usuario está logeado correctamente
-router.get("/protected", authMiddleware, (req, res) => {
-    res.status(200).send(`Hi user ${req.userId}`);
-});
+// Método DELETE: Para eliminar usuario
+router.delete('/:id_user', controller.deleteUser);
 
 // Exportar routers
 module.exports = router;

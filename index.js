@@ -22,6 +22,18 @@ app.use('/courses', courseRouter);
 // Se agrega la ruta para realizar la autenticación
 app.use("/auth", require("./routers/auth.router"));
 
+const localityRouter = require('./routers/localities.router');
+//Siempre que se refiera a los alumnos se colocará el prefijo /courses
+app.use('/localities', localityRouter);
+
+const schoolRouter = require('./routers/schools.router');
+//Siempre que se refiera a los alumnos se colocará el prefijo /courses
+app.use('/schools', schoolRouter);
+
+const taskRouter = require('./routers/tasks.router');
+//Siempre que se refiera a los tareas se colocará el prefijo /tasks
+app.use('/tasks', taskRouter);
+
 app.get("/",(req, res) => {
     res.send("Hi digital agenda");
 });

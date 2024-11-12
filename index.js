@@ -12,26 +12,24 @@ const app = express();
 app.use(express.json()); 
 
 const studentsRouter = require('./routers/students.router');
-//Siempre que se refiera a los alumnos se colocará el prefijo /students
 app.use('/students', studentsRouter);
 
 const courseRouter = require('./routers/courses.router');
-//Siempre que se refiera a los alumnos se colocará el prefijo /courses
 app.use('/courses', courseRouter);
 
 // Se agrega la ruta para realizar la autenticación
 app.use("/auth", require("./routers/auth.router"));
 
+const userRouter = require('./routers/users.router');
+app.use('/users', userRouter);
+
 const localityRouter = require('./routers/localities.router');
-//Siempre que se refiera a los alumnos se colocará el prefijo /courses
 app.use('/localities', localityRouter);
 
 const schoolRouter = require('./routers/schools.router');
-//Siempre que se refiera a los alumnos se colocará el prefijo /courses
 app.use('/schools', schoolRouter);
 
 const taskRouter = require('./routers/tasks.router');
-//Siempre que se refiera a los tareas se colocará el prefijo /tasks
 app.use('/tasks', taskRouter);
 
 app.get("/",(req, res) => {

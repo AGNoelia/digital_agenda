@@ -47,8 +47,9 @@ const loadSchools = (req, res) => {
 const updateSchool = (req, res) => {
     const {id_school} = req.params;
     const {school_name, school_address, locality} = req.body;
-    const sql = "UPDATE schools SET school_name = ?, school_address = ?, locality = ? WHERE id_locality = ?"
+    const sql = "UPDATE schools SET school_name = ?, school_address = ?, locality = ? WHERE id_school = ?"
     db.query(sql,[school_name, school_address, locality, id_school], (error, result) => {
+        console.log(error);
         if(error){
             return res.status(500).json({error : "ERROR: Try later."})
         }

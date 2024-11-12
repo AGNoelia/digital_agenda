@@ -62,7 +62,7 @@ const updateTask = (req, res) => {
 // Método DELETE
 const deleteTask = (req, res) => {
     const {id_task} = req.params;
-    const sql = "DELETE FROM task WHERE id_task = ?"
+    const sql = "DELETE FROM tasks WHERE id_task = ?"
     db.query(sql,[id_task], (error, result) => {
         if(error){
             return res.status(500).json({error : "ERROR: Try later."})

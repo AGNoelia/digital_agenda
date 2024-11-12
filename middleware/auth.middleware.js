@@ -23,7 +23,7 @@ module.exports = (req, res, next) => {
                 .send({auth: false, message: "Failed to authenticate token."});
         
         //Busca el nombre de usuario para el id de usuario
-        console.log(decoded.id_user)
+        console.log("decoded.id_user", decoded.id_user)
         db.query("SELECT name_user from users WHERE id_user = ?", [decoded.id_user], (error, result) => {
             console.log("error: ",error);
             console.log("result",result[0].name_user)

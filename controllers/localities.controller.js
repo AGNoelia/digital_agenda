@@ -48,9 +48,9 @@ const loadLocalities = (req, res) => {
 const updateLocality = (req, res) => {
     const {id_locality} = req.params;
     const {locality_description} = req.body;
-    const sql = "UPDATE locality SET locality_description = ? WHERE id_locality = ?"
+
+    const sql = "UPDATE localities SET locality_description = ? WHERE id_locality = ?"
     db.query(sql,[locality_description, id_locality], (error, result) => {
-        console.log(result);
         if(error){
             return res.status(500).json({error : "ERROR: Try later."})
         }
@@ -74,7 +74,7 @@ const deleteLocality = (req, res) => {
         if(result.affectedRows == 0){
             return res.status(404).send({error: "ERROR: The course to delete doesn't exist."})
         }
-        res.json({mensaje: "course deleted"});
+        res.json({mensaje: "Locality deleted"});
     });
 };
 

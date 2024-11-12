@@ -91,7 +91,7 @@ const login = (req, res) => {
 // *********************************************************
 //              FUNCIÓN PARA MODIFICAR UN USUARIO
 // *********************************************************
-const updateUser = (req, res) => {
+/*const updateUser = (req, res) => {
     const {id_user} = req.params;
     const {name_user, email_user, password} = req.body;
     const sql = "UPDATE users SET name_user = ?, email_user = ?, password = ? WHERE id_user = ?"
@@ -125,11 +125,11 @@ const deleteUser = (req, res) => {
 
         res.json({mensaje: "User deleted."})
     });
-};
+};*/
 
 module.exports = {
     register, 
     login,
-    updateUser,
-    deleteUser,
+    //updateUser,
+    //deleteUser,
 };

@@ -53,10 +53,10 @@ router.post('/register', upload.single('imagen'), controller.register);
 router.post('/login', controller.login);
 
 // Método PUT: Para modificar usuario ya cargado
-router.put('/:id_user', controller.updateUser);
+//router.put('/:id_user', controller.updateUser);
 
 // Método DELETE: Para eliminar usuario
-router.delete('/:id_user', controller.deleteUser);
+//router.delete('/:id_user', controller.deleteUser);
 
 // Exportar routers
 module.exports = router;

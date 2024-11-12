@@ -6,16 +6,22 @@ const db = require("../db/db")
 //              FUNCIÓN PARA REGISTRAR UN USUARIO
 // ***********************************************************
 const register = (req, res) => {
+    console.log(req.file);
+    let imageName = "";
+    if(req.file){
+        imageName = req.file.filename;
+    };
+
     // Estos valores se envian en el body del POSTMAN, en realidad se enviaría por formulario.
-    const {name_user, email_user, password} = req.body;
+    const {name_user, email_user, password, imagen} = req.body;
     // Se arma el hash. Se pide que se hashee la contraseña a un nivel 8.
     const hash = bcrypt.hashSync(password, 8); 
     // Muestro el hash
     //console.log(hash);
 
-    const sql = "INSERT INTO users (name_user, email_user, password) VALUES (?, ?, ?)"
+    const sql = "INSERT INTO users (name_user, email_user, password, imagen) VALUES (?, ?, ?, ?)"
 
-    db.query(sql,[name_user, email_user, password], (error, result) => {
+    db.query(sql,[name_user, email_user, password, imageName], (error, result) => {
         console.log(result);
         console.log(error);
         if(error){
